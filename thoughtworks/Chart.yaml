@@ -1,0 +1,5 @@
+apiVersion: v2
+name: thoughtworks
+version: 0.0.1
+appVersion: 0.0.1
+description: Generic Helm chart to deploy thoughtwork apps

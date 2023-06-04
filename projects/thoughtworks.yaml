@@ -24,72 +24,90 @@ spec:
 status: {}
 
 ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: ApplicationSet
+# metadata:
+#   annotations:
+#     argocd.argoproj.io/sync-wave: "0"
+#   creationTimestamp: null
+#   name: thoughtworks
+#   namespace: argocd
+# spec:
+#   generators:
+#   - git:
+#       files:
+#       - path: apps/**/thoughtworks/config.json
+#       repoURL: https://github.com/sudeepgupta90/tw-mediawiki.git
+#       requeueAfterSeconds: 20
+#       revision: ""
+#       template:
+#         metadata: {}
+#         spec:
+#           destination: {}
+#           project: ""
+#           source:
+#             repoURL: ""
+#   - git:
+#       files:
+#       - path: apps/**/thoughtworks/config_dir.json
+#       repoURL: https://github.com/sudeepgupta90/tw-mediawiki.git
+#       requeueAfterSeconds: 20
+#       revision: ""
+#       template:
+#         metadata: {}
+#         spec:
+#           destination: {}
+#           project: ""
+#           source:
+#             directory:
+#               exclude: '{{ exclude }}'
+#               include: '{{ include }}'
+#               jsonnet: {}
+#               recurse: true
+#             repoURL: ""
+#   syncPolicy: {}
+#   template:
+#     metadata:
+#       labels:
+#         app.kubernetes.io/managed-by: argocd-autopilot
+#         app.kubernetes.io/name: '{{ appName }}'
+#       name: thoughtworks-{{ userGivenName }}
+#       namespace: argocd
+#     spec:
+#       destination:
+#         namespace: '{{ destNamespace }}'
+#         server: '{{ destServer }}'
+#       ignoreDifferences:
+#       - group: argoproj.io
+#         jsonPointers:
+#         - /status
+#         kind: Application
+#       project: thoughtworks
+#       source:
+#         path: '{{ srcPath }}'
+#         repoURL: '{{ srcRepoURL }}'
+#         targetRevision: '{{ srcTargetRevision }}'
+#       syncPolicy:
+#         automated:
+#           allowEmpty: true
+#           prune: true
+#           selfHeal: true
+# status: {}
 apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
+kind: Application
 metadata:
-  annotations:
-    argocd.argoproj.io/sync-wave: "0"
-  creationTimestamp: null
   name: thoughtworks
-  namespace: argocd
 spec:
-  generators:
-  - git:
-      files:
-      - path: apps/**/thoughtworks/config.json
-      repoURL: https://github.com/sudeepgupta90/tw-mediawiki.git
-      requeueAfterSeconds: 20
-      revision: ""
-      template:
-        metadata: {}
-        spec:
-          destination: {}
-          project: ""
-          source:
-            repoURL: ""
-  - git:
-      files:
-      - path: apps/**/thoughtworks/config_dir.json
-      repoURL: https://github.com/sudeepgupta90/tw-mediawiki.git
-      requeueAfterSeconds: 20
-      revision: ""
-      template:
-        metadata: {}
-        spec:
-          destination: {}
-          project: ""
-          source:
-            directory:
-              exclude: '{{ exclude }}'
-              include: '{{ include }}'
-              jsonnet: {}
-              recurse: true
-            repoURL: ""
-  syncPolicy: {}
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/managed-by: argocd-autopilot
-        app.kubernetes.io/name: '{{ appName }}'
-      name: thoughtworks-{{ userGivenName }}
-      namespace: argocd
-    spec:
-      destination:
-        namespace: '{{ destNamespace }}'
-        server: '{{ destServer }}'
-      ignoreDifferences:
-      - group: argoproj.io
-        jsonPointers:
-        - /status
-        kind: Application
-      project: thoughtworks
-      source:
-        path: '{{ srcPath }}'
-        repoURL: '{{ srcRepoURL }}'
-        targetRevision: '{{ srcTargetRevision }}'
-      syncPolicy:
-        automated:
-          allowEmpty: true
-          prune: true
-          selfHeal: true
-status: {}
+  destination:
+    namespace: argocd
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: thoughtworks
+    repoURL: 'https://github.com/sudeepgupta90/tw-mediawiki'
+    targetRevision: HEAD
+  sources: []
+  project: thoughtworks
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
