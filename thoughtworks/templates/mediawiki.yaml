@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mediawiki
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: thoughtworks
+
+  # Source of the application manifests
+  source:
+    repoURL: https://github.com/sudeepgupta90/tw-mediawiki.git
+    targetRevision: HEAD
+    path: helm-charts/mediawiki
+    helm: 
+      releaseName: mediawiki
+
+    # Destination cluster and namespace to deploy the application
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: mediawiki
+
+  # Sync policy
+  syncPolicy:
+    automated:
+      selfHeal: true
