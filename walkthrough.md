@@ -82,14 +82,14 @@ being the most common and easy to understandably demarcate/organise
 
 ### Setup instructions
 
-- Deploy minikube as minikube start
+- Deploy minikube as ```minikube start```
 - Open another terminal, and start a Load Balancer ```minikube tunnel```
 - Setup ArgoCD using the AutoPilot and it's prequisites as [here](https://argocd-autopilot.readthedocs.io/en/stable/Getting-Started/)
 - Create
-    - [Application Project](/projects/thoughtworks.yaml)
-    - [App of Apps](/thoughtworks/)
+    - [Application Project](/projects/thoughtworks.yaml) which deploys the apps to dev cluster
+    - [App of Apps](/thoughtworks/) which groups deploys all apps from one place to a destination as speficied by project config
     - Colocate chart in the repo as [helm-charts/mediawiki](/helm-charts/mediawiki/)
-    - [Application Manifest](/thoughtworks/templates/mediawiki.yaml)
+    - [Application Manifest](/thoughtworks/templates/mediawiki.yaml) which is scoped to a project config and deploys accordingly
 
 ### Screenshots
 
