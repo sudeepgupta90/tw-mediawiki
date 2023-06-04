@@ -1,0 +1,6 @@
+dependencies:
+- name: mediawiki
+  repository: oci://registry-1.docker.io/bitnamicharts
+  version: 15.1.2
+digest: sha256:6380b125a5faed4284dd4115b27ffda84eb5d869032492a1e2354ba727e05066
+generated: "2023-06-03T21:20:04.365303+05:30"

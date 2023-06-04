@@ -1,0 +1,4 @@
+mediawiki-official:
+  mediawikiHost: "127.0.0.1"
+  service:
+    loadBalancerIP: "127.0.0.1"

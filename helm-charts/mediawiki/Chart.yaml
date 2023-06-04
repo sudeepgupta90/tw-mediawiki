@@ -1,0 +1,24 @@
+apiVersion: v2
+name: mediawiki
+version: 1.0.0
+appVersion: 15.1.2
+description: Helm chart to deploy Media Wiki
+# home: https://airflow.apache.org/
+# icon: https://airflow.apache.org/docs/apache-airflow/stable/_images/pin_large.png
+# keywords:
+#   - apache
+#   - airflow
+#   - workflow
+#   - scheduler
+#   - argocd
+#   - gitops  
+# maintainers:
+#   - email: dl-global-ftech-infra-data-platform@farfetch.com
+#     name: Data Platform Infrastructure Team
+# sources:
+#   - oci://registry-1.docker.io/bitnamicharts
+dependencies:
+  - name: mediawiki
+    version: 15.1.2
+    repository: oci://registry-1.docker.io/bitnamicharts
+    alias: mediawiki-official
